@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Characters from "./Characters.json";
+import Wrapper from "./components/wrapper";
+import Jumbotron from "./components/Jumbotron";
+import CharacterCard from "./components/charactersCard"
+import {Col, Container} from "./components/Grid"
 
-function App() {
+
+class App extends React.Component{
+  state = {
+     Characters,
+     "isClicked": false
+  }
+
+  shuffleCharacters = (event) => {
+    const { } = event.target;
+
+
+  }
+
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Col size="md-12">
+            <Jumbotron>
+              <h1>HEEEEELLLLLOOOOOOOO NURSE</h1>
+            </Jumbotron>
+     </Col>
+    <Wrapper>
+    
+      {
+        this.state.Characters.map(character => {
+          return (
+            <Col size="md-4">
+            <CharacterCard
+            name={character.name}
+            image={character.image}
+            id={character.id}
+           
+            />
+            </Col>
+          )
+        })
+      }
+   
+      
+    </Wrapper>
+    </Container>
+  )
+}
 }
 
 export default App;
