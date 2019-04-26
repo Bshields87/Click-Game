@@ -4,21 +4,29 @@ import Wrapper from "./components/wrapper";
 import Jumbotron from "./components/Jumbotron";
 import CharacterCard from "./components/charactersCard"
 import {Col, Container} from "./components/Grid"
-
+import shuffle from 'shuffle-array';
 
 class App extends React.Component{
   state = {
      Characters,
-     "isClicked": false
+    isClicked: false
   }
 
-  shuffleCharacters = (event) => {
-    const { } = event.target;
+  
+   onHandleShuffleCharacters = () => {
+   //const characterArr = this.state.Characters
+   
+  shuffle(Characters)
+  this.setState({isClicked: true})  
+  // return console.log()
+    
+   }
 
-
-  }
 
 render(){
+  shuffle(Characters)
+ console.log(this.state.Characters)
+ //console.log(this.shuffleCharacters)
   return (
     <Container>
       <Col size="md-12">
@@ -35,7 +43,9 @@ render(){
             <CharacterCard
             name={character.name}
             image={character.image}
+            key={character.id}
             id={character.id}
+            HandleShuffle={this.onHandleShuffleCharacters}
            
             />
             </Col>
